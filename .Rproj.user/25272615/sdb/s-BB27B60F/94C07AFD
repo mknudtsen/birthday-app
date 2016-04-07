@@ -1,0 +1,18 @@
+{
+    "contents" : "\n# Build initial calendar data frame (cal_df)\nyear_dates <- seq(as.Date(\"2015-01-01\"), as.Date(\"2015-12-31\"), by=\"days\")\n\ncal_df <- data.frame(month = format(year_dates, \"%b\"),\n                     day = format(year_dates, \"%d\"),\n                     name = format(year_dates, \"%b %d\"),\n                     num = 1:365,\n                     count = 0)\n\n\nstart_df <- data.frame(month = 30,\n                       day = 30,\n                       name = format(year_dates, \"%b %d\"),\n                       num = 1:365,\n                       count = \"\")\n\ndefaultColors <- c(\"#3366cc\", \"#dc3912\", \"#ff9900\", \"#109618\", \"#990099\", \"#0099c6\", \"#dd4477\")\nseries <- structure(lapply(defaultColors, function(color) { list(color = color)}), \n                    names = levels(start_df$count))\n\nxlim <- list( \n  min = 0,\n  max = 32\n)\nylim <- list(\n  min = 0,\n  max = 13\n)\n\n\n",
+    "created" : 1456427695199.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "441075808",
+    "id" : "94C07AFD",
+    "lastKnownWriteTime" : 1457028646,
+    "path" : "~/Development/susan/probability/birthday_app/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

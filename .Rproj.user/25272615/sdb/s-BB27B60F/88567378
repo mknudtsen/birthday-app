@@ -1,0 +1,17 @@
+{
+    "contents" : "library(shiny)\nlibrary(googleCharts)\n\n# Use global max/min for axes so the view window stays\n# constant as the user moves between years\n# xlim <- list(\n#   min = 0,\n#   max = 32\n# )\n# ylim <- list(\n#   min = 0,\n#   max = 13\n# )\n\n\nshinyUI(fluidPage(\n  # This line loads the Google Charts JS library\n  googleChartsInit(),\n  \n  # Use the Google webfont \"Source Sans Pro\"\n  tags$link(\n    href=paste0(\"http://fonts.googleapis.com/css?\", \"family=Source+Sans+Pro:300,600,300italic\"),\n    rel=\"stylesheet\", type=\"text/css\"),\n  tags$style(type=\"text/css\", \"body {font-family: 'Source Sans Pro'}\"),\n\n  # Application title\n  titlePanel(\"Random Birthday Applet\"),\n  br(),\n\n  # Set up fluid grid \n  sidebarLayout(\n    sidebarPanel(width = 3,\n      selectInput(inputId = \"bdays\", label = \"Birthdays to Generate:\",\n                  choices = c(seq(5, 50, 5), 75, 100), selected = 20),\n      uiOutput(outputId = \"sliderControl\"),\n      wellPanel(uiOutput(outputId = \"text\")),\n      actionButton(inputId = \"reset\", label = \"Reset\")\n    ),\n    mainPanel(width = 9,\n      # tableOutput(\"table\"),\n      \n      googleBubbleChart(\"chart\", width = \"900\", height = \"500px\"\n#         options = list(\n#           fontName = \"Source Sans Pro\",\n#           backgroundColor = \"transparent\",\n#           fontSize = 12, \n#           hAxis = list(\n#             viewWindow = xlim,\n#             ticks = seq(1, 31, 1)\n#           ),\n#           vAxis = list(\n#             viewWindow = ylim,\n#             direction = -1, \n#             ticks = seq(1, 12, 1)\n#           ),\n#           sizeAxis = list(\n#             maxSize = 12\n#           ),\n#           chartArea = list(\n#             top = 0, left = 25, \n#             height = \"95%\", width = \"95%\"\n#           ),\n#           bubble = list(\n#             opacity = 0.8, \n#             textStyle = list(\n#               color = \"white\",\n#               fontSize = 8\n#             )\n#           )\n#         ) # End chart options\n      ) # End chart\n    ) # End mainpanel\n\n    \n    \n  )\n\n\n))\n",
+    "created" : 1456435569100.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4260144201",
+    "id" : "88567378",
+    "lastKnownWriteTime" : 1456813088,
+    "path" : "~/Development/susan/probability/birthday_app/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

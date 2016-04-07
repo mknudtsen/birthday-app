@@ -1,0 +1,17 @@
+{
+    "contents" : "library(dplyr)\n\nshinyServer(function(input, output, session) {\n  \n  # Provide explicit colors for regions, so they don't get recoded when the\n  # different series happen to be ordered differently from year to year.\n  # http://andrewgelman.com/2014/09/11/mysterious-shiny-things/\n#   defaultColors <- c(\"#3366cc\", \"#dc3912\", \"#ff9900\", \"#109618\", \"#990099\", \"#0099c6\", \"#dd4477\")\n#   series <- structure(\n#     lapply(defaultColors, function(color) { list(color=color) }),\n#     names = levels(data$Region)\n#   )\n  \n  v = reactiveValues(bdays = c())\n  \n  observeEvent(input$animate, {\n    v$bdays <- v$bdays %>% append(sample(1:365, (input$animate/input$animate), replace=T))\n  })\n  \n  update_counts <- reactive({\n    bdays <- v$bdays\n    counts <- table(bdays)\n    counts <- as.data.frame(counts)\n    return(counts)\n  })\n  \n  bday_df <- reactive({\n    df <- cal_df\n    df$month <- factor(df$month, levels=month.abb)\n    counts <- update_counts()\n    df$count <- counts[match(df$num, counts$bdays), 2]\n    #df$month <- cal_df[match(df$num, cal_df$num), 1]\n    #df$day <- cal_df[match(df$num, cal_df$num), 2]\n    #df[is.na(df)] <- 0\n    #df$num <- as.character(df$num)\n    df$day <- as.numeric(df$day)\n    df$month <- as.numeric(df$month)\n    df$count <- as.character(df$count)\n    #levels(df$counts) <- seq(1,7,1)\n    df <- df %>% \n      select(name, day, month, count)\n    return(df)     \n  })\n  \n  output$chart <- reactive({\n    # Return the data and options\n    list(\n      data = googleDataTable(bday_df())\n      )\n  })\n  \n})\n",
+    "created" : 1456771236155.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1444412247",
+    "id" : "8FDC2AF3",
+    "lastKnownWriteTime" : 1456295146,
+    "path" : "~/Dropbox/MarkK/birthday/birthdayViz/server.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

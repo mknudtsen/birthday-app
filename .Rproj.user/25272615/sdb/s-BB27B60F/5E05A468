@@ -1,0 +1,17 @@
+{
+    "contents" : "year_dates <- seq(as.Date(\"2015-01-01\"), as.Date(\"2015-12-31\"), by=\"days\")\ncal_df <- data.frame(month = format(year_dates, \"%b\"),\n                     day = format(year_dates, \"%d\"),\n                     name = format(year_dates, \"%b %d\"),\n                     num = 1:365,\n                     count = 0)\n",
+    "created" : 1456771280827.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3392799307",
+    "id" : "5E05A468",
+    "lastKnownWriteTime" : 1456174400,
+    "path" : "~/Dropbox/MarkK/birthday/birthdayViz/global.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_source"
+}
